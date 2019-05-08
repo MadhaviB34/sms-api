@@ -1,6 +1,7 @@
 package com.omniwyse.sms.models;
 
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.GeneratedValue;
@@ -13,22 +14,22 @@ public class Holidays {
 	private Date fromdate;
 	private Date todate;
 	private String occassion;
-	private Date createdon;
-    private Date modifiedon;
+	private Timestamp createdon;
+    private Timestamp modifiedon;
     
-    public Date getCreatedon() {
+    public Timestamp getCreatedon() {
 		return createdon;
 	}
 
-	public void setCreatedon(Date createdon) {
+	public void setCreatedon(Timestamp createdon) {
 		this.createdon = createdon;
 	}
 
-	public Date getModifiedon() {
+	public Timestamp getModifiedon() {
 		return modifiedon;
 	}
 
-	public void setModifiedon(Date modifiedon) {
+	public void setModifiedon(Timestamp modifiedon) {
 		this.modifiedon = modifiedon;
 	}
 

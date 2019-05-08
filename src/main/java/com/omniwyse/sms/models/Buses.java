@@ -1,5 +1,6 @@
 package com.omniwyse.sms.models;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.GeneratedValue;
@@ -20,19 +21,23 @@ public class Buses {
 	private boolean active;
 	private Date joindate; 
 	private String registrationnumber; 
-	private Date createdon;
-	private Date modifiedon;
-	public Date getCreatedon() {
-			return createdon;
+	private Timestamp createdon;
+    private Timestamp modifiedon;
+    
+    public Timestamp getCreatedon() {
+		return createdon;
 	}
-	public void setCreatedon(Date createdon) {
-			this.createdon = createdon;
+
+	public void setCreatedon(Timestamp createdon) {
+		this.createdon = createdon;
 	}
-	public Date getModifiedon() {
-			return modifiedon;
+
+	public Timestamp getModifiedon() {
+		return modifiedon;
 	}
-	public void setModifiedon(Date modifiedon) {
-			this.modifiedon = modifiedon;
+
+	public void setModifiedon(Timestamp modifiedon) {
+		this.modifiedon = modifiedon;
 	}
 	@Id
 	@GeneratedValue

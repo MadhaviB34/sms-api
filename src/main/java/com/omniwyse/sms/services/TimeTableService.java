@@ -1,5 +1,7 @@
 package com.omniwyse.sms.services;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -57,11 +59,13 @@ public class TimeTableService {
 				long totime = totimehours * 60 + Integer.parseInt(periodTypesDTO.getTotime().getMm());
 				if (periodTypesDTO.getTotime().getA().equalsIgnoreCase("pm"))
 					totime = totime + (12 * 60);
-
+				
 				periodTypes.setFromtime(fromtime);
 				periodTypes.setTotime(totime);
 
 				periodTypes.setNumberofperiods(periodTypesDTO.getNumberofperiods());
+				periodTypes.setCreatedon(new Timestamp(new Date().getTime()));
+				periodTypes.setModifiedon(new Timestamp(new Date().getTime()));
 				rowEffected = db.insert(periodTypes).getRowsAffected();
 			} else {
 				return 0;
@@ -118,6 +122,8 @@ public class TimeTableService {
 					period.setPeriodfrom(periodfrom);
 					period.setPeriodto(periodto);
 					period.setPeriod_number(periodDTO.getPeriod_number());
+					period.setCreatedon(new Timestamp(new Date().getTime()));
+					period.setModifiedon(new Timestamp(new Date().getTime()));
 					rowEffected = db.insert(period).getRowsAffected();
 							}
 					else

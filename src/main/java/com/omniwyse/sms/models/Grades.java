@@ -1,6 +1,6 @@
 package com.omniwyse.sms.models;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,27 +12,28 @@ public class Grades  {
 	private long id;
 	private long gradenumber;
 	private String gradename;
-	private Date createdon;
-	private Date modifiedon;
 	private String syllabustype;
-
+	private Timestamp createdon;
+	private Timestamp modifiedon;
 	
-	public Date getCreatedon() {
+	
+	public Timestamp getCreatedon() {
 		return createdon;
 	}
 
-	public void setCreatedon(Date createdon) {
+	public void setCreatedon(Timestamp createdon) {
 		this.createdon = createdon;
 	}
-
-	public Date getModifiedon() {
+	
+	public Timestamp getModifiedon() {
 		return modifiedon;
 	}
 
-	public void setModifiedon(Date modifiedon) {
+	public void setModifiedon(Timestamp modifiedon) {
 		this.modifiedon = modifiedon;
 	}
-
+	
+	
 	@Id
 	@GeneratedValue
 	public long getId() {

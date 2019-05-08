@@ -1,5 +1,6 @@
 package com.omniwyse.sms.services;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +31,8 @@ public class EventsService {
         event.setDescription(eventdto.getDescription());
         event.setEventdate(eventdate);
         event.setEventname(eventdto.getEventname());
-
+        event.setCreatedon(new Timestamp(new Date().getTime()));
+        event.setModifiedon(new Timestamp(new Date().getTime()));
         return db.insert(event).getRowsAffected();
     }
 
@@ -50,7 +52,9 @@ public class EventsService {
     public int editEvent(Events event, long tenantId) {
 
         db = retrive.getDatabase(tenantId);
-        
+        Timestamp createdon = db.where("id=?",event.getId()).results(Events.class).get(0).getCreatedon();
+        event.setCreatedon(createdon);
+        event.setModifiedon(new Timestamp(new Date().getTime()));
         return db.update(event).getRowsAffected();
 
     }

@@ -1,5 +1,6 @@
 package com.omniwyse.sms.services;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +31,8 @@ public class HolidaysService {
                 holidays.setOccassion(holidaydto.getOccassion());
                 holidays.setFromdate(fromdate);
                 holidays.setTodate(todate);
+                holidays.setCreatedon(new Timestamp(new Date().getTime()));
+                holidays.setModifiedon(new Timestamp(new Date().getTime()));
                 return db.insert(holidays).getRowsAffected();
         }
         return 0;
@@ -75,7 +78,9 @@ public class HolidaysService {
 
     public int editHoliday(Holidays holidays, long tenantId) {
         db = retrive.getDatabase(tenantId);
-
+        Timestamp createdon = db.where("id=?",holidays.getId()).results(Holidays.class).get(0).getCreatedon();
+        holidays.setCreatedon(createdon);
+        holidays.setModifiedon(new Timestamp(new Date().getTime()));
         return db.update(holidays).getRowsAffected();
 
     }

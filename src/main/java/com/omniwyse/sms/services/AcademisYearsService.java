@@ -1,5 +1,6 @@
 package com.omniwyse.sms.services;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -31,10 +32,14 @@ public class AcademisYearsService {
 				if (academicyearsDTO.getActive() == 1) {
 					List<AcademicYears> academicyear = db.where("active=1").results(AcademicYears.class);
 					if (academicyear.isEmpty()) {
+						academicyears.setCreatedon(new Timestamp(new Date().getTime()));
+						academicyears.setModifiedon(new Timestamp(new Date().getTime()));
 						return db.insert(academicyears).getRowsAffected();
 					} else
 						return -5;
 				}
+				academicyears.setCreatedon(new Timestamp(new Date().getTime()));
+				academicyears.setModifiedon(new Timestamp(new Date().getTime()));
 				return db.insert(academicyears).getRowsAffected();
 			} else {
 				return 0;
@@ -51,6 +56,8 @@ public class AcademisYearsService {
 				}
 			}
 			academicyears.setId(academicyearsDTO.getId());
+			Timestamp createdon = db.where("id=?",academicyears.getId()).results(AcademicYears.class).get(0).getCreatedon();
+			academicyears.setCreatedon(createdon);
 			return db.update(academicyears).execute().getRowsAffected();
 		}
 	}

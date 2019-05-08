@@ -1,6 +1,6 @@
 package com.omniwyse.sms.models;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,8 +11,24 @@ public class House {
 	private long id;
 	private String housename;
 	private String description;
-	private Date createdon;
-	private Date modifiedon;
+	private Timestamp createdon;
+    private Timestamp modifiedon;
+    
+    public Timestamp getCreatedon() {
+		return createdon;
+	}
+
+	public void setCreatedon(Timestamp createdon) {
+		this.createdon = createdon;
+	}
+
+	public Timestamp getModifiedon() {
+		return modifiedon;
+	}
+
+	public void setModifiedon(Timestamp modifiedon) {
+		this.modifiedon = modifiedon;
+	}
 	@Id
 	@GeneratedValue
 	public long getId() {
@@ -24,18 +40,7 @@ public class House {
 	public String getHousename() {
 		return housename;
 	}
-	public Date getCreatedon() {
-		return createdon;
-	}
-	public void setCreatedon(Date createdon) {
-		this.createdon = createdon;
-	}
-	public Date getModifiedon() {
-		return modifiedon;
-	}
-	public void setModifiedon(Date modifiedon) {
-		this.modifiedon = modifiedon;
-	}
+	
 	public void setHousename(String housename) {
 		this.housename = housename;
 	}

@@ -1,5 +1,6 @@
 package com.omniwyse.sms.models;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.GeneratedValue;
@@ -13,8 +14,25 @@ public class TestType {
 
 	private String testtype;
 
-	private Date createdon;
-	private Date modifiedon;
+	private Timestamp createdon;
+    private Timestamp modifiedon;
+    
+    public Timestamp getCreatedon() {
+		return createdon;
+	}
+
+	public void setCreatedon(Timestamp createdon) {
+		this.createdon = createdon;
+	}
+
+	public Timestamp getModifiedon() {
+		return modifiedon;
+	}
+
+	public void setModifiedon(Timestamp modifiedon) {
+		this.modifiedon = modifiedon;
+	}
+	
 
 	@Id
 	@GeneratedValue
@@ -34,20 +52,6 @@ public class TestType {
 		this.testtype = testtype;
 	}
 
-	public Date getCreatedon() {
-		return createdon;
-	}
-
-	public void setCreatedon(Date createdon) {
-		this.createdon = createdon;
-	}
-
-	public Date getModifiedon() {
-		return modifiedon;
-	}
-
-	public void setModifiedon(Date modifiedon) {
-		this.modifiedon = modifiedon;
-	}
+	
 
 }

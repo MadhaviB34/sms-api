@@ -1,5 +1,7 @@
 package com.omniwyse.sms.services;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,8 @@ public class HouseService {
 		db = retrieve.getDatabase(tenantId);
 		List<House> records = db.where("housename=?", house.getHousename()).results(House.class);
 		if (records.isEmpty()) {
+			house.setCreatedon(new Timestamp(new Date().getTime()));
+			house.setModifiedon(new Timestamp(new Date().getTime()));
 			return db.insert(house).getRowsAffected();
 		}
 		return 0;
@@ -33,6 +37,9 @@ public class HouseService {
 
 	public int editHouseDetails(House house, long tenantId) {
 		db = retrieve.getDatabase(tenantId);
+		Timestamp createdon = db.where("id=?",house.getId()).results(House.class).get(0).getCreatedon();
+		house.setCreatedon(createdon);
+		house.setModifiedon(new Timestamp(new Date().getTime()));
 		return db.update(house).getRowsAffected();
 	}
 

@@ -1,6 +1,6 @@
 package com.omniwyse.sms.models;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,9 +19,24 @@ public class Periods {
 	
 	private Long periodto;
 
-	private Date createdOn;
-    private Date modifiedOn;
+	private Timestamp createdon;
+    private Timestamp modifiedon;
     
+    public Timestamp getCreatedon() {
+		return createdon;
+	}
+
+	public void setCreatedon(Timestamp createdon) {
+		this.createdon = createdon;
+	}
+
+	public Timestamp getModifiedon() {
+		return modifiedon;
+	}
+
+	public void setModifiedon(Timestamp modifiedon) {
+		this.modifiedon = modifiedon;
+	}
 	
     
     @Id
@@ -33,23 +48,6 @@ public class Periods {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public Date getCreatedOn() {
-		return createdOn;
-	}
-
-	public void setCreatedOn(Date createdOn) {
-		this.createdOn = createdOn;
-	}
-
-	public Date getModifiedOn() {
-		return modifiedOn;
-	}
-
-	public void setModifiedOn(Date modifiedOn) {
-		this.modifiedOn = modifiedOn;
-	}
-
 	public Long getPeriod_type_id() {
 		return period_type_id;
 	}

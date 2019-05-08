@@ -1,5 +1,6 @@
 package com.omniwyse.sms.services;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +33,8 @@ public class TestService {
 
 		List<TestType> records = db.where("testtype=?", testtypename).results(TestType.class);
 		if (records.isEmpty()) {
+			testtype.setCreatedon(new Timestamp(new Date().getTime()));
+			testtype.setModifiedon(new Timestamp(new Date().getTime()));
 			return db.insert(testtype).getRowsAffected();
 		}
 		return 0;
@@ -59,6 +62,8 @@ public class TestService {
 			testcreate.setMaxmarks(testTransferObject.getMaxmarks());
 			testcreate.setAcademicid(academicyear);
 			testcreate.setStatusid(db.where("status = ?", testTransferObject.getStatus()).results(StatusTable.class).get(0).getId());
+			testcreate.setCreatedon(new Timestamp(new Date().getTime()));
+			testcreate.setModifiedon(new Timestamp(new Date().getTime()));
 			db.insert(testcreate).getRowsAffected();
 			long testid = testcreate.getId();
 			testsyllubus = new TestSyllabus();
@@ -67,6 +72,7 @@ public class TestService {
 			        + " and subjects.istestable='true'",gradeid).results(GradeSubjects.class);
 			for (GradeSubjects gradesubject : subjectid) {
 				testsyllubus.setSubjectid(gradesubject.getSubjectid());
+				
 				db.insert(testsyllubus);
 			}
 			return 1;

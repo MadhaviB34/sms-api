@@ -1,7 +1,6 @@
 package com.omniwyse.sms.services;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.dieselpoint.norm.Database;
 import com.dieselpoint.norm.Transaction;
-
 import com.omniwyse.sms.models.BusSummery;
 import com.omniwyse.sms.models.Buses;
 import com.omniwyse.sms.models.ClassRoom;
@@ -78,6 +76,8 @@ public class StudentsService {
 					long roleid = db.sql("select id from roles where role=?", addStudent.getRole())
 							.results(UserRoles.class).get(0).getId();
 					userRoleMaintain.setRoleid(roleid);
+					userRoleMaintain.setCreatedon(new Timestamp(new Date().getTime()));
+					userRoleMaintain.setModifiedon(new Timestamp(new Date().getTime()));
 					db.transaction(transaction).insert(userRoleMaintain);
 					if (register(parentid, addStudent, db, transaction) == 0)
 						return 0;

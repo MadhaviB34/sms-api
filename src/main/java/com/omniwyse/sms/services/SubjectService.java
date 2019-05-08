@@ -1,5 +1,7 @@
 package com.omniwyse.sms.services;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ public class SubjectService {
 		subjectname = subjects.getSubjectname();
 		db = retrive.getDatabase(tenantId);
 		if (isValidSubject(subjectname)) {
+			subjects.setCreatedon(new Timestamp(new Date().getTime()));
+			subjects.setModifiedon(new Timestamp(new Date().getTime()));
 			return db.insert(subjects).getRowsAffected();
 		} else
 			return 0;

@@ -1,6 +1,8 @@
 package com.omniwyse.sms.services;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,8 @@ public class GradeService {
 		long gradeNumber = addgrade.getGradenumber();
 		grade.setGradenumber(gradeNumber);
 		grade.setGradename(addgrade.getGradename());
+		grade.setCreatedon(new Timestamp(new Date().getTime()));
+		grade.setModifiedon(new Timestamp(new Date().getTime()));
 		ArrayList<String> subjects = addgrade.getSubjects();
 		String syllabus = addgrade.getSyllabustype();
 
@@ -45,6 +49,8 @@ public class GradeService {
 			for (String subject : subjects) {
 				long subjectid = db.where("subjectname=?", subject).results(Subjects.class).get(0).getId();
 				gradesubjects.setSubjectid(subjectid);
+				gradesubjects.setCreatedon(new Timestamp(new Date().getTime()));
+				gradesubjects.setModifiedon(new Timestamp(new Date().getTime()));
 				db.insert(gradesubjects);
 			}
 			return 1;
