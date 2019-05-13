@@ -1,5 +1,6 @@
 package com.omniwyse.sms.utils;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class PeriodTypesDTO {
@@ -13,11 +14,27 @@ public class PeriodTypesDTO {
 	private String name;
 
 	private Long numberofperiods;
+	private Timestamp createdon;
+    private Timestamp modifiedon;
+    
+    public Timestamp getCreatedon() {
+		return createdon;
+	}
+
+	public void setCreatedon(Timestamp createdon) {
+		this.createdon = createdon;
+	}
+
+	public Timestamp getModifiedon() {
+		return modifiedon;
+	}
+
+	public void setModifiedon(Timestamp modifiedon) {
+		this.modifiedon = modifiedon;
+	}
 
 	private boolean isDefault;
 
-	private Date createdOn;
-	private Date modifiedOn;
 
 	public boolean isDefault() {
 		return isDefault;
@@ -26,17 +43,6 @@ public class PeriodTypesDTO {
 	public void setDefault_value(boolean value) {
 		this.isDefault = value;
 	}
-
-	
-
-	public Date getCreatedOn() {
-		return createdOn;
-	}
-
-	public void setCreatedOn(Date createdOn) {
-		this.createdOn = createdOn;
-	}
-
 	public TimeDTO getFromtime() {
 		return fromtime;
 	}
@@ -52,15 +58,6 @@ public class PeriodTypesDTO {
 	public void setTotime(TimeDTO totime) {
 		this.totime = totime;
 	}
-
-	public Date getModifiedOn() {
-		return modifiedOn;
-	}
-
-	public void setModifiedOn(Date modifiedOn) {
-		this.modifiedOn = modifiedOn;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -68,9 +65,6 @@ public class PeriodTypesDTO {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	
-
 	public String getName() {
 		return name;
 	}
@@ -94,3 +88,4 @@ public class PeriodTypesDTO {
 	}
 
 }
+

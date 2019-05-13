@@ -70,6 +70,8 @@ public class StudentsService {
 					userCredentials.setMail(addStudent.getParentemailid());
 					userCredentials.setPassword(addStudent.getPassword());
 					userCredentials.setStatusid(1);
+					userCredentials.setCreatedon(new Timestamp(new Date().getTime()));
+					userCredentials.setModifiedon(new Timestamp(new Date().getTime()));
 					db.transaction(transaction).insert(userCredentials);
 					UserRoleMaintain userRoleMaintain = new UserRoleMaintain();
 					userRoleMaintain.setUserid(userCredentials.getId());

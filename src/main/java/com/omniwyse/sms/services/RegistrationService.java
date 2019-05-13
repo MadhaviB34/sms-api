@@ -1,5 +1,7 @@
+
 package com.omniwyse.sms.services;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -49,8 +51,8 @@ public class RegistrationService {
 		tenant.setCode(code);
 		tenant.setDbname(users.getSchoolcode());
 		tenant.setDateofestablishment(users.getDateofestablishment());
-		tenant.setCreatedOn(new Date());
-		tenant.setModifiedOn(new Date());
+		tenant.setCreatedOn(new Timestamp(new Date().getTime()));
+		tenant.setModifiedOn(new Timestamp(new Date().getTime()));
 		tenant.setUrl("iSchool"+users.getSchoolname());
 		client.setFname(users.getContactname());
 		client.setContactnumber(users.getContactnumber());

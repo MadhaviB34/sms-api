@@ -2,7 +2,7 @@ package com.omniwyse.sms.services;
 
 import java.util.Date;
 import java.util.List;
-
+import java.sql.Timestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -70,6 +70,8 @@ public class TeacherService {
 					userCredentials.setMail(addTeacher.getEmailid());
 					userCredentials.setPassword(addTeacher.getPassword());
 					userCredentials.setStatusid(1);
+					userCredentials.setCreatedon(new Timestamp(new Date().getTime()));
+					userCredentials.setModifiedon(new Timestamp(new Date().getTime()));
 
 					db.transaction(transaction).insert(userCredentials);
 
@@ -78,6 +80,8 @@ public class TeacherService {
 					long roleid = db.sql("select id from roles where role=?",addTeacher.getRole()).results(UserRoles.class).get(0)
 							.getId();
 					userRoleMaintain.setRoleid(roleid);
+					userRoleMaintain.setCreatedon(new Timestamp(new Date().getTime()));
+					userRoleMaintain.setModifiedon(new Timestamp(new Date().getTime()));
 					db.transaction(transaction).insert(userRoleMaintain);
 					transaction.commit();
 					return 1;

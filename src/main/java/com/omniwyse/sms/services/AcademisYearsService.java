@@ -58,6 +58,7 @@ public class AcademisYearsService {
 			academicyears.setId(academicyearsDTO.getId());
 			Timestamp createdon = db.where("id=?",academicyears.getId()).results(AcademicYears.class).get(0).getCreatedon();
 			academicyears.setCreatedon(createdon);
+			academicyears.setModifiedon(new Timestamp(new Date().getTime()));
 			return db.update(academicyears).execute().getRowsAffected();
 		}
 	}

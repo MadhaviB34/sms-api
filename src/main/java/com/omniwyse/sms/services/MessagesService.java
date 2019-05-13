@@ -104,7 +104,7 @@ public class MessagesService {
 						List<Teachers> teachers = 
 								db.where("id=?", replymessage.getRecieverid()).results(Teachers.class);
 						if(!teachers.isEmpty()) {
-							replymessage.setSendername(teachers.get(0).getTeachername());
+							replymessage.setRecievername(teachers.get(0).getTeachername());
 						}
 						//replymessage.setRecievername(db.where("id=?", replymessage.getRecieverid()).results(Teachers.class).get(0).getTeachername());
 			}

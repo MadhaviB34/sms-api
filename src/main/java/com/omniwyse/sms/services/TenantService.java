@@ -1,6 +1,7 @@
 package com.omniwyse.sms.services;
 
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -16,8 +17,8 @@ public class TenantService extends BaseService {
     }
 
     public int saveSchool(Tenants school) {
-    		school.setCreatedOn(new Date());
-    		school.setModifiedOn(new Date());
+    	school.setCreatedOn(new Timestamp(new Date().getTime()));
+    	school.setModifiedOn(new Timestamp(new Date().getTime()));
         return getSmsDB().insert(school).getRowsAffected();
     }
 
@@ -26,3 +27,4 @@ public class TenantService extends BaseService {
     }
 
 }
+

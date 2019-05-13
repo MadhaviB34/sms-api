@@ -18,10 +18,10 @@ public class DBConnectionProperties {
             user = System.getenv().getOrDefault("sms_db_user", System.getenv("ischool_db_user"));
             password = System.getenv().getOrDefault("sms_db_password", System.getenv("ischool_db_password"));
         } else {
-            host = System.getenv().getOrDefault("sms_db_host", "localhost");
+            host = System.getenv().getOrDefault("sms_db_host", "ls-19723e7c7f1013506ea2ec4ce2605cc78573b4f2.cxmircddsjde.ap-south-1.rds.amazonaws.com");
             port = System.getenv().getOrDefault("sms_db_port", "3306");
-            user = System.getenv().getOrDefault("sms_db_user", "madhu");
-            password = System.getenv().getOrDefault("sms_db_password", "madhu");
+            user = System.getenv().getOrDefault("sms_db_user", "ischooladmin");
+            password = System.getenv().getOrDefault("sms_db_password", "AdMI%uJKreUsr");
         }
     }
 
